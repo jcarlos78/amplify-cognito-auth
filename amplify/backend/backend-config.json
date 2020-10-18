@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "labdevsinvest1480467b": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
