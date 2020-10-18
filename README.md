@@ -1,2 +1,2 @@
 # amplify-cognito-auth
-This is a amplify cognito auth template project still in construcation
+This is an Amplify Cognito auth template project still in construction
