@@ -1,5 +1,5 @@
-This is an Amplify Cognito auth template project still in construction
+This is an **Amplify Cognito Auth Template** project 
 
-Special thanks to Tektuitive I used their youtube channel to get this working :
+**> Still in construction**
 
-https://www.youtube.com/channel/UCKBWovN9JcjEPoO5rCm9eCA
+Special thanks to [Tektuitive](https://www.youtube.com/channel/UCKBWovN9JcjEPoO5rCm9eCA) I used their youtube channel to get this working!
