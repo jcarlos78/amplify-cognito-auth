@@ -72,7 +72,7 @@ export default function SignUp(props){
                 <TouchableOpacity
                     style={styles.button}
                     onPress={() => onSubmit()}>
-                    <Text style={styles.buttonText}>Press Here</Text>
+                    <Text style={styles.buttonText}>Enviar</Text>
                 </TouchableOpacity>
                 <View style={styles.links}>
                     <Button
