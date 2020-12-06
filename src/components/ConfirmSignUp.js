@@ -10,48 +10,44 @@ import {
 } from 'react-native'
 import Amplify from 'aws-amplify';
 import {Auth} from 'aws-amplify'
-import {validateEmail,validatePassword} from '../validation'
+import {validateEmail} from '../validation'
 import awsconfig from '../../aws-exports';
 import {FormStyles} from '../styles/FormStyles'
 
 Amplify.configure(awsconfig);
 
-export default function SignUp(props){
+export default function ConfirmSignUp(props){
     
     const [state, setState] = useState({
         email: '',
-        password: '',
+        confirmationCode: '',
     });
-    const [error,setErrors] = useState({
-        email:'',password:''
-    });
+    const [error,setErrors] = useState({email:''});
 
     async function onSubmit() {
+        const {email: username, confirmationCode: code} = state;
         const emailError = validateEmail(state.email);
-        const passwordError = validatePassword(state.password);
-        if(emailError || passwordError) {
-            setErrors({email:emailError,password:passwordError});
+        if(emailError) {
+            setErrors({email:emailError});
         }else{
             try{
                 console.log({
                     username: state.email,
                     password: state.password,
                 })
-                const user = await Auth.signUp({
-                    username: state.email,
-                    password: state.password,
-                });
-                props.onStateChange('confirmSignUp',user);
+                const user = await Auth.confirmSignUp(username, code);
+                setState({confirmationCode: '', email: ''});
+                props.onStateChange('signIn',user);
             }catch(errorMsg){
                 Alert.alert(errorMsg);
             }
         }
     }
 
-    if(props.authState === 'signUp'){
+    if(props.authState === 'confirmSignUp'){
         return (
             <View style={FormStyles.container}>
-                <Text style={FormStyles.title}>Criar Conta</Text>
+                <Text style={FormStyles.title}>Confirmar Conta</Text>
                 <Text style={FormStyles.label}>Email:</Text>
                 <TextInput
                 style={FormStyles.input}
@@ -60,15 +56,14 @@ export default function SignUp(props){
                 value={state.email}
                 />
                 <Text style={FormStyles.error}>{error.email}</Text>
-                <Text style={FormStyles.label}>Senha:</Text>
+                <Text style={FormStyles.label}>Código de Confirmação:</Text>
                 <TextInput
                 style={FormStyles.input}
-                onChangeText={(text) => setState({...state, password: text})}
-                placeholder="Sua senha"
-                value={state.password}
-                secureTextEntry={true}
+                onChangeText={(text) => setState({...state, confirmationCode: text})}
+                placeholder="Código de Confirmação"
+                value={state.confirmationCode}
                 />
-                <Text style={FormStyles.error}>{error.password}</Text>
+                
                 <TouchableOpacity
                     style={FormStyles.button}
                     onPress={() => onSubmit()}>
@@ -82,10 +77,10 @@ export default function SignUp(props){
                     accessibilityLabel="voltar para login"
                     />
                     <Button
-                    onPress={() => props.onStateChange('confirmSignUp', {})}
-                    title="Confirmar Código"
+                    onPress={() => props.onStateChange('signUp', {})}
+                    title="Voltar para Cadastro"
                     color="black"
-                    accessibilityLabel="confirmar código"
+                    accessibilityLabel="voltar para cadastro"
                     />
                 </View>
             </View>
