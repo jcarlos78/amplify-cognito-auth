@@ -1,22 +1,20 @@
 import React, {useState} from 'react'
+
 import {
     View,
     Text,
     Button,
     TextInput,
-    StyleSheet,
     TouchableOpacity,
-    Dimensions,
     Alert
 } from 'react-native'
 import Amplify from 'aws-amplify';
 import {Auth} from 'aws-amplify'
 import {validateEmail,validatePassword} from '../validation'
 import awsconfig from '../../aws-exports';
+import {FormStyles} from '../styles/FormStyles'
 
 Amplify.configure(awsconfig);
-
-const windowWidth = Dimensions.get('window').width;
 
 export default function SignUp(props){
     
@@ -51,30 +49,30 @@ export default function SignUp(props){
 
     if(props.authState === 'signUp'){
         return (
-            <View style={styles.container}>
-                <Text style={styles.title}>SignUp</Text>
-                <Text style={styles.label}>Email:</Text>
+            <View style={FormStyles.container}>
+                <Text style={FormStyles.title}>SignUp</Text>
+                <Text style={FormStyles.label}>Email:</Text>
                 <TextInput
-                style={styles.input}
+                style={FormStyles.input}
                 onChangeText={(text) => setState({...state, email: text.toLowerCase()})}
                 placeholder="Seu email"
                 value={state.email}
                 />
-                <Text style={styles.error}>{error.email}</Text>
-                <Text style={styles.label}>Senha:</Text>
+                <Text style={FormStyles.error}>{error.email}</Text>
+                <Text style={FormStyles.label}>Senha:</Text>
                 <TextInput
-                style={styles.input}
+                style={FormStyles.input}
                 onChangeText={(text) => setState({...state, password: text})}
                 placeholder="Sua senha"
                 value={state.password}
                 />
-                <Text style={styles.error}>{error.password}</Text>
+                <Text style={FormStyles.error}>{error.password}</Text>
                 <TouchableOpacity
-                    style={styles.button}
+                    style={FormStyles.button}
                     onPress={() => onSubmit()}>
-                    <Text style={styles.buttonText}>Enviar</Text>
+                    <Text style={FormStyles.buttonText}>Enviar</Text>
                 </TouchableOpacity>
-                <View style={styles.links}>
+                <View style={FormStyles.links}>
                     <Button
                     onPress={() => props.onStateChange('signIn', {})}
                     title="Voltar para Login"
@@ -94,51 +92,3 @@ export default function SignUp(props){
         return <></>
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex:1,
-        height:'100%',
-        justifyContent : 'center',
-        width : windowWidth,
-        padding: 20,
-    },
-    button: {
-        backgroundColor : '#4682B4',
-        height : 40,
-        borderRadius : 5,
-        justifyContent:'center',
-    },
-    buttonText: {
-        textTransform: 'uppercase',
-        color:'white',
-        textAlign:'center',
-    },
-    input: { 
-        height: 40, 
-        borderColor: 'lightgray', 
-        borderWidth: 1,
-        marginBottom: 5,
-        borderRadius: 5,
-        padding: 10,
-    },
-    links:{
-        flexDirection:'row',
-        justifyContent:'space-between',
-    },
-    title: {
-        textAlign: 'center',
-        fontSize: 18,
-        fontWeight: '600',
-        textTransform: 'uppercase',
-    },
-    label: {
-        marginLeft: 5,
-        marginBottom: 5,
-    },
-    error: {
-        color: 'red',
-        paddingBottom: 10,
-        marginLeft: 5,
-    },
-  });
