@@ -48,4 +48,8 @@ error: {
     paddingBottom: 10,
     marginLeft: 5,
 },
+space: {
+    paddingBottom: 10,
+    marginLeft: 5,
+},
 });

@@ -10,23 +10,25 @@ import {
 } from 'react-native'
 import Amplify from 'aws-amplify';
 import {Auth} from 'aws-amplify'
-import {validateEmail} from '../validation'
+import {validateEmail,validatePassword} from '../validation'
 import awsconfig from '../../aws-exports';
 import {FormStyles} from '../styles/FormStyles'
 
 Amplify.configure(awsconfig);
 
-export default function ConfirmSignUp(props){
+export default function SignIn(props){
     
     const [state, setState] = useState({
         email: '',
-        confirmationCode: '',
+        password: '',
     });
-    const [error,setErrors] = useState({email:''});
+    const [error,setErrors] = useState({
+        email:'',password:''
+    });
 
     async function onSubmit() {
-        const {email: username, confirmationCode: code} = state;
         const emailError = validateEmail(state.email);
+        
         if(emailError) {
             setErrors({email:emailError});
         }else{
@@ -35,19 +37,22 @@ export default function ConfirmSignUp(props){
                     username: state.email,
                     password: state.password,
                 })
-                const user = await Auth.confirmSignUp(username, code);
-                setState({confirmationCode: '', email: ''});
-                props.onStateChange('signIn',user);
+                const user = await Auth.signIn({
+                    username: state.email,
+                    password: state.password,
+                });
+                setErrors({email: ''});
+                props.onStateChange('confirmSignUp',user);
             }catch(errorMsg){
                 Alert.alert(errorMsg);
             }
         }
     }
 
-    if(props.authState === 'confirmSignUp'){
+    if(props.authState === 'signIn'){
         return (
             <View style={FormStyles.container}>
-                <Text style={FormStyles.title}>Confirmar Conta</Text>
+                <Text style={FormStyles.title}>Entrar</Text>
                 <Text style={FormStyles.label}>Email:</Text>
                 <TextInput
                 style={FormStyles.input}
@@ -56,31 +61,32 @@ export default function ConfirmSignUp(props){
                 value={state.email}
                 />
                 <Text style={FormStyles.error}>{error.email}</Text>
-                <Text style={FormStyles.label}>Código de Confirmação:</Text>
+                <Text style={FormStyles.label}>Senha:</Text>
                 <TextInput
                 style={FormStyles.input}
-                onChangeText={(text) => setState({...state, confirmationCode: text})}
-                placeholder="Código de Confirmação"
-                value={state.confirmationCode}
+                onChangeText={(text) => setState({...state, password: text})}
+                placeholder="Sua senha"
+                value={state.password}
+                secureTextEntry={true}
                 />
                 <Text style={FormStyles.space}></Text>
                 <TouchableOpacity
                     style={FormStyles.button}
                     onPress={() => onSubmit()}>
-                    <Text style={FormStyles.buttonText}>Enviar</Text>
+                    <Text style={FormStyles.buttonText}>Entrar</Text>
                 </TouchableOpacity>
                 <View style={FormStyles.links}>
                     <Button
-                    onPress={() => props.onStateChange('signIn', {})}
-                    title="Voltar para Login"
+                    onPress={() => props.onStateChange('forgotPassword', {})}
+                    title="Esqueci Minha Senha"
                     color="black"
-                    accessibilityLabel="voltar para login"
+                    accessibilityLabel="esqueci minha senha"
                     />
                     <Button
                     onPress={() => props.onStateChange('signUp', {})}
-                    title="Voltar para Cadastro"
+                    title="Criar Conta"
                     color="black"
-                    accessibilityLabel="voltar para cadastro"
+                    accessibilityLabel="criar conta"
                     />
                 </View>
             </View>
