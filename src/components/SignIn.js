@@ -53,6 +53,7 @@ export default function SignIn(props){
         return (
             <View style={FormStyles.container}>
                 <Text style={FormStyles.title}>Entrar</Text>
+                <Text style={FormStyles.space}></Text>
                 <Text style={FormStyles.label}>Email:</Text>
                 <TextInput
                 style={FormStyles.input}

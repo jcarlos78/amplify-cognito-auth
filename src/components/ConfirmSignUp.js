@@ -48,6 +48,7 @@ export default function ConfirmSignUp(props){
         return (
             <View style={FormStyles.container}>
                 <Text style={FormStyles.title}>Confirmar Conta</Text>
+                <Text style={FormStyles.space}></Text>
                 <Text style={FormStyles.label}>Email:</Text>
                 <TextInput
                 style={FormStyles.input}

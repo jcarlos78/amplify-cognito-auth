@@ -52,6 +52,7 @@ export default function SignUp(props){
         return (
             <View style={FormStyles.container}>
                 <Text style={FormStyles.title}>Criar Conta</Text>
+                <Text style={FormStyles.space}></Text>
                 <Text style={FormStyles.label}>Email:</Text>
                 <TextInput
                 style={FormStyles.input}
@@ -62,11 +63,11 @@ export default function SignUp(props){
                 <Text style={FormStyles.error}>{error.email}</Text>
                 <Text style={FormStyles.label}>Senha:</Text>
                 <TextInput
-                style={FormStyles.input}
-                onChangeText={(text) => setState({...state, password: text})}
-                placeholder="Sua senha"
-                value={state.password}
-                secureTextEntry={true}
+                    style={FormStyles.input}
+                    onChangeText={(text) => setState({...state, password: text})}
+                    placeholder="Sua senha"
+                    value={state.password}
+                    secureTextEntry={true}
                 />
                 <Text style={FormStyles.error}>{error.password}</Text>
                 <TouchableOpacity
