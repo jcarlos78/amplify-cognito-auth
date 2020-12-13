@@ -18,6 +18,10 @@ Node.js
 
 ```
 * yarn install
+* react-native upgrade
+* amplify init
+![alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+* react-native run-ios
 ```
 
 ## Running the tests
