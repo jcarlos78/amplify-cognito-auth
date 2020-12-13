@@ -22,26 +22,13 @@ Node.js
 * amplify init
 ```
 ![Screenshot](https://raw.githubusercontent.com/jcarlos78/react-native-amplify-cognito-auth/main/amplify-init.png)
-```
-* react-native run-ios
-```
+
 
 ## Running the tests
 
 ```
-//TODO 
-```
-
-### Break down into end to end tests
-
-```
-//TODO 
-```
-
-### Coding style tests
-
-```
-//TODO 
+* react-native run-ios
+* react-native android
 ```
 
 ## Deployment
