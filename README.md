@@ -20,7 +20,9 @@ Node.js
 * yarn install
 * react-native upgrade
 * amplify init
+```
 ![Screenshot](https://raw.githubusercontent.com/jcarlos78/react-native-amplify-cognito-auth/main/amplify-init.png)
+```
 * react-native run-ios
 ```
 
