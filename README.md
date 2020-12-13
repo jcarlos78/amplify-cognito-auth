@@ -8,8 +8,6 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
 ```
 React Native 
 AWS CLI
@@ -18,28 +16,26 @@ Node.js
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
 ```
-//TODO Give the example 
+* yarn install
 ```
 
 ## Running the tests
 
 ```
-//TODO Give the example 
+//TODO 
 ```
 
 ### Break down into end to end tests
 
 ```
-//TODO Give the example 
+//TODO 
 ```
 
 ### Coding style tests
 
 ```
-//TODO Give the example 
+//TODO 
 ```
 
 ## Deployment
@@ -50,9 +46,7 @@ A step by step series of examples that tell you how to get a development env run
 
 ## Built With
 
-* //TODO Give the example 
-* //TODO Give the example 
-* //TODO Give the example 
+* //TODO 
 
 <!--
 ## Contributing
